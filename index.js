@@ -4,12 +4,19 @@ const { graphqlExpress, graphiqlExpress } = require("apollo-server-express");
 const { makeExecutableSchema } = require("graphql-tools");
 const _ = require("lodash");
 
+const users = [
+  { id: 1, name: "Harry" },
+  { id: 2, name: "John" },
+  { id: 3, name: "Charles" }
+];
+
 const typeDefs = `
   type Query {
     users: [User]
   }
 
   type User {
+    id: Int
     name: String
   }
 `;
@@ -17,7 +24,7 @@ const typeDefs = `
 const resolvers = {
   Query: {
     users: () => {
-      return [{ name: "Harry" }];
+      return users;
     }
   }
 };
