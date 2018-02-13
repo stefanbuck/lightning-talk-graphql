@@ -30,6 +30,12 @@ const typeDefs = `
   }
 `;
 
+const fetchSlackName = id =>
+  new Promise((resolve, reject) => {
+    const user = _.find(users, { id });
+    resolve(`_${user.name.toUpperCase()}`);
+  });
+
 const resolvers = {
   Query: {
     users: () => {
@@ -44,7 +50,7 @@ const resolvers = {
   },
   User: {
     slackname(user) {
-      return `_${user.name.toUpperCase()}`;
+      return fetchSlackName(user.id);
     }
   }
 };
