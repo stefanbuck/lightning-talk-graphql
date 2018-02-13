@@ -20,6 +20,7 @@ const typeDefs = `
   type User {
     id: Int
     name: String
+    slackname: String
     role: UserRole
   }
 
@@ -39,6 +40,11 @@ const resolvers = {
     },
     filterByRole: (obj, args, context) => {
       return _.filter(users, { role: args.role });
+    }
+  },
+  User: {
+    slackname(user) {
+      return `_${user.name.toUpperCase()}`;
     }
   }
 };
