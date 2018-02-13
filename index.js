@@ -1,7 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const { graphql } = require("graphql");
 const { graphqlExpress, graphiqlExpress } = require("apollo-server-express");
-const { makeExecutableSchema } = require("graphql-tools");
+const {
+  makeExecutableSchema,
+  addMockFunctionsToSchema
+} = require("graphql-tools");
 const _ = require("lodash");
 
 const users = [
@@ -60,6 +64,8 @@ const schema = makeExecutableSchema({
   typeDefs,
   resolvers
 });
+
+addMockFunctionsToSchema({ schema });
 
 // Initialize the app
 const app = express();
