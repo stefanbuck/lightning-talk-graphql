@@ -5,6 +5,13 @@ const { makeExecutableSchema } = require("graphql-tools");
 const _ = require("lodash");
 
 const typeDefs = `
+  type Query {
+    users: [User]
+  }
+
+  type User {
+    name: String
+  }
 `;
 
 const resolvers = {};
