@@ -14,7 +14,13 @@ const typeDefs = `
   }
 `;
 
-const resolvers = {};
+const resolvers = {
+  Query: {
+    users: () => {
+      return [{ name: "Harry" }];
+    }
+  }
+};
 
 // Put together a schema
 const schema = makeExecutableSchema({
