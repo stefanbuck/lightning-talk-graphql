@@ -14,6 +14,7 @@ const typeDefs = `
   type Query {
     users: [User]
     user(id :Int!): User
+    filterByRole(role :UserRole!): [User]
   }
 
   type User {
@@ -35,6 +36,9 @@ const resolvers = {
     },
     user: (obj, args, context) => {
       return _.find(users, { id: args.id });
+    },
+    filterByRole: (obj, args, context) => {
+      return _.filter(users, { role: args.role });
     }
   }
 };
