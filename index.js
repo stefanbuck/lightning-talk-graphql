@@ -5,9 +5,9 @@ const { makeExecutableSchema } = require("graphql-tools");
 const _ = require("lodash");
 
 const users = [
-  { id: 1, name: "Harry" },
-  { id: 2, name: "John" },
-  { id: 3, name: "Charles" }
+  { id: 1, name: "Harry", role: "ADMIN" },
+  { id: 2, name: "John", role: "REGULAR" },
+  { id: 3, name: "Charles", role: "REGULAR" }
 ];
 
 const typeDefs = `
@@ -19,6 +19,12 @@ const typeDefs = `
   type User {
     id: Int
     name: String
+    role: UserRole
+  }
+
+  enum UserRole {
+    ADMIN
+    REGULAR
   }
 `;
 
